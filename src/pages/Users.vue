@@ -1,17 +1,9 @@
 <template>
   <Layout>
     <div class="h-full flex-1 flex flex-col">
-      <form @submit.prevent="createUser()" class="bg-white p-4 border border-gray-400 rounded mb-8">
-        <h4 class="text-xl font-semibold mb-2">Create New User</h4>
-        <div class="flex -mx-2 mb-2">
-          <input type="text" class="flex-1 border mx-2 px-3 py-1 rounded" v-model="newUser.name" required placeholder="Name">
-          <input type="email" class="flex-1 border mx-2 px-3 py-1 rounded" v-model="newUser.email" required placeholder="Email">
-          <button type="submit" class="mx-2 px-4 py-1 bg-teal-500 text-white border border-teal-500 rounded">Create</button>
-        </div>
-      </form>
       <div class="bg-white p-4 rounded border border-gray-400">
         <h3 class="text-xl font-bold mb-8">Users</h3>
-        <ul class="-my-4">
+        <ul v-if="isLoggedIn" class="-my-4">
           <li v-for="user in users" :key="user.id" class="my-4">
             <div class="flex p-3 hover:bg-gray-100 rounded">
               <h4 class="text-xl font-semibold mb-1">
@@ -23,6 +15,9 @@
             </div>
           </li>
         </ul>
+        <p v-else>
+          Please <g-link to="/login" class="hover:underline text-teal-500">login</g-link> to view all users.
+        </p>
       </div>
     </div>
   </Layout>
@@ -30,6 +25,7 @@
 
 <script>
 import gql from 'graphql-tag';
+import { mapGetters } from 'vuex';
 export default {
   metaInfo: {
     title: 'Manage Users'
@@ -43,6 +39,9 @@ export default {
       },
       users: []
     }
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   },
   apollo: {
     users: gql`query {
