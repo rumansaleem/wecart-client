@@ -8,15 +8,15 @@
         <h4 class="text-xl font-semibold mb-2">Login</h4>
         <div class="flex flex-col -my-2 mb-2">
           <input
-            type="email"
             v-model="form.email"
+            type="email"
             class="flex-1 border my-2 px-3 py-1 rounded"
             required
             placeholder="Email"
           />
           <input
-            type="password"
             v-model="form.password"
+            type="password"
             class="flex-1 border my-2 px-3 py-1 rounded"
             required
             placeholder="Password"
@@ -34,27 +34,27 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-import { mapMutations } from "vuex";
+import gql from 'graphql-tag'
+import { mapMutations } from 'vuex'
 export default {
   metaInfo: {
-    title: "Login"
+    title: 'Login',
   },
   data() {
     return {
       form: {
-        email: "",
-        password: ""
-      }
-    };
+        email: '',
+        password: '',
+      },
+    }
   },
   methods: {
-    ...mapMutations(["setAuthUser"]),
+    ...mapMutations(['setAuthUser']),
     async login() {
       const {
         data: {
-          login: { user, token }
-        }
+          login: { user, token },
+        },
       } = await this.$apollo.query({
         query: gql`
           query($email: String!, $password: String!) {
@@ -70,16 +70,16 @@ export default {
           }
         `,
         variables: {
-          ...this.form
-        }
-      });
+          ...this.form,
+        },
+      })
 
       if (user && token) {
-        this.setAuthUser({ user, token });
+        this.setAuthUser({ user, token })
       }
 
-      setTimeout(() => this.$router.push({ path: "/users" }), 500);
-    }
-  }
-};
+      setTimeout(() => this.$router.push({ path: '/users' }), 500)
+    },
+  },
+}
 </script>

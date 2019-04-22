@@ -47,18 +47,18 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-import { mapMutations } from "vuex";
+import gql from 'graphql-tag'
+import { mapMutations } from 'vuex'
 export default {
   metaInfo: {
-    title: "Login"
+    title: 'Login',
   },
   data() {
     return {
       form: {
-        name: "",
-        email: "",
-        password: ""
+        name: '',
+        email: '',
+        password: '',
       },
       registerQuery: gql`
         mutation($name: String!, $email: String!, $password: String!) {
@@ -79,36 +79,36 @@ export default {
             }
           }
         }
-      `
-    };
+      `,
+    }
   },
   methods: {
-    ...mapMutations(["setAuthUser"]),
+    ...mapMutations(['setAuthUser']),
     async register() {
       await this.$apollo.mutate({
         mutation: this.registerQuery,
         variables: {
-          ...this.form
-        }
-      });
+          ...this.form,
+        },
+      })
       const {
         data: {
-          login: { token, user }
-        }
+          login: { token, user },
+        },
       } = await this.$apollo.query({
         query: this.loginQuery,
         variables: {
           email: this.form.email,
-          password: this.form.password
-        }
-      });
+          password: this.form.password,
+        },
+      })
 
       if (user && token) {
-        this.setAuthUser({ user, token });
-        this.form = { name: "", email: "", password: "" };
-        this.$router.push({ path: "/" });
+        this.setAuthUser({ user, token })
+        this.form = { name: '', email: '', password: '' }
+        this.$router.push({ path: '/' })
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>

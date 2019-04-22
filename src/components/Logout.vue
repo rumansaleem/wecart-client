@@ -4,15 +4,15 @@
   </a>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations } from 'vuex'
 export default {
-  name: "Logout",
+  name: 'Logout',
   methods: {
-    ...mapMutations(["removeAuthUser"]),
+    ...mapMutations(['removeAuthUser']),
     logout() {
-      this.removeAuthUser();
-      this.$router.replace("/");
-    }
-  }
-};
+      this.removeAuthUser()
+      this.$router.replace('/')
+    },
+  },
+}
 </script>

@@ -28,14 +28,14 @@
   </div>
 </template>
 <script>
-import Logout from "./../components/Logout.vue";
-import { mapGetters } from "vuex";
+import Logout from './../components/Logout.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { Logout },
   computed: {
-    ...mapGetters(["isLoggedIn"])
-  }
-};
+    ...mapGetters(['isLoggedIn']),
+  },
+}
 </script>
 
 <static-query>

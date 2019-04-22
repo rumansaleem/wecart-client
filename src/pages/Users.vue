@@ -32,24 +32,24 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-import { mapGetters } from "vuex";
+import gql from 'graphql-tag'
+import { mapGetters } from 'vuex'
 export default {
   metaInfo: {
-    title: "Manage Users"
+    title: 'Manage Users',
   },
   data() {
     return {
       newUser: {
-        name: "",
-        email: "",
-        isAdmin: false
+        name: '',
+        email: '',
+        isAdmin: false,
       },
-      users: []
-    };
+      users: [],
+    }
   },
   computed: {
-    ...mapGetters(["isLoggedIn"])
+    ...mapGetters(['isLoggedIn']),
   },
   apollo: {
     users: gql`
@@ -60,12 +60,12 @@ export default {
           email
         }
       }
-    `
+    `,
   },
   methods: {
     async createUser() {
       const {
-        data: { createUser: user }
+        data: { createUser: user },
       } = await this.$apollo.mutate({
         mutation: gql`
           mutation($name: String!, $email: String!, $isAdmin: Boolean) {
@@ -76,17 +76,17 @@ export default {
             }
           }
         `,
-        variables: this.newUser
-      });
+        variables: this.newUser,
+      })
 
-      this.users.unshift(user);
+      this.users.unshift(user)
 
       this.newUser = {
-        name: "",
-        email: "",
-        isAdmin: false
-      };
-    }
-  }
-};
+        name: '',
+        email: '',
+        isAdmin: false,
+      }
+    },
+  },
+}
 </script>
