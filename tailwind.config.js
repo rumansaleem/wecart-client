@@ -3,7 +3,7 @@ module.exports = {
     // Some useful comment
     container: {
       center: true,
-      padding: '1rem',
+      padding: "1rem"
     }
   },
   variants: {
@@ -12,4 +12,4 @@ module.exports = {
   plugins: [
     // Some useful comment
   ]
-}
+};
