@@ -17,6 +17,7 @@
 
 <script>
 import gql from 'graphql-tag';
+import { mapMutations } from 'vuex';
 export default {
   metaInfo: {
     title: 'Login'
@@ -24,33 +25,52 @@ export default {
   data() {
     return {
         form: {
+            name: '',
             email: '',
             password: '',
-        }
+        },
+        registerQuery: gql`mutation ($name: String!, $email: String!, $password: String!) {
+            createUser(name: $name, email: $email, password: $password) {
+                id
+            }
+        }`,
+        loginQuery: gql`query ($email: String!, $password: String!) {
+            login(email: $email, password: $password) {
+                token
+                user {
+                    id
+                    name
+                    email
+                    isAdmin
+                }
+            }
+        }`
     }
   },
   methods: {
-    async login() {
-        const {data: {login: {user, token, message}}} = await this.$apollo.query({
-            query: gql`query ($email: String!, $password: String!) {
-                login(email: $email, password: $password) {
-                    token
-                    user {
-                        id
-                        name
-                        email
-                    }
-                    message
-                }
-            }`,
+    ...mapMutations(['setAuthUser']),
+    async register() {
+    
+        await this.$apollo.mutate({
+            mutation: this.registerQuery,
             variables: {
                 ...this.form
             }
         });
-        if(user) {
-            setTimeout(() => this.$router.push({path: '/users'}), 3000);
+        const {data: {login:{token, user}}} = await this.$apollo.query({
+            query: this.loginQuery,
+            variables: {
+                email: this.form.email,
+                password: this.form.password,
+            }
+        });
+        
+
+        if(user && token) {
+            this.setAuthUser({user, token});
+            this.form = {name:'', email: '', password:''}
+            this.$router.push({path: '/'});
         }
-        alert(message);
     }
   }
 }
