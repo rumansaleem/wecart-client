@@ -2,10 +2,17 @@
   <div
     class="bg-gray-200 text-black font-sans flex flex-col min-h-screen antialiased"
   >
-    <header class="sticky top-0 bg-white shadow py-1">
-      <div class="container flex items-baseline">
-        <h1 class="text-xl font-bold">
-          <g-link to="/">{{ $static.metaData.siteName }}</g-link>
+    <header class="sticky top-0 bg-white shadow py-2">
+      <div class="container flex items-center">
+        <h1 class="text-xl font-bold p-2">
+          <g-link to="/">
+            <span class="p-1 pl-2 bg-teal-500 text-white border border-teal-500"
+              >We</span
+            >
+            <span class="p-1 pr-2 bg-white text-teal-500 border border-teal-500"
+              >Cart</span
+            >
+          </g-link>
         </h1>
         <nav
           class="flex-1 text-left text-xs uppercase font-semibold tracking-wide mx-2"
@@ -14,7 +21,7 @@
           <g-link class="mx-2" to="/users">Users</g-link>
         </nav>
         <div class="text-xs uppercase font-semibold tracking-wide -mx-2">
-          <Logout v-if="isLoggedIn" class="mx-2">Logout</Logout>
+          <UserMenu v-if="isLoggedIn"></UserMenu>
           <g-link v-if="!isLoggedIn" class="mx-2" to="/login">Login</g-link>
           <g-link v-if="!isLoggedIn" class="mx-2" to="/register"
             >Register</g-link
@@ -28,13 +35,14 @@
   </div>
 </template>
 <script>
-import Logout from './../components/Logout.vue'
+import UserMenu from './../components/UserMenu.vue'
 import { mapGetters } from 'vuex'
 export default {
-  components: { Logout },
+  components: { UserMenu },
   computed: {
     ...mapGetters(['isLoggedIn']),
   },
+  created() {},
 }
 </script>
 
