@@ -1,23 +1,25 @@
 <template>
-  <div class="relative inline-flex flex-col">
+  <div class="inline-flex flex-col">
     <button
-      class="inline-flex items-center font-bold uppercase tracking-wide"
+      class="flex items-center font-bold uppercase tracking-wide"
       @click.prevent="toggle"
     >
       <img :src="gravatar" :alt="user.name" class="mx-2 rounded-full w-8" />
       <span v-text="user.name"></span>
     </button>
-    <ul
-      v-if="isOpen"
-      class="absolute mt-2 min-w-32 right-0 py-4 bg-white border shadow-lg rounded"
-    >
-      <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
-      <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
-      <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
-      <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">
-        <Logout>Logout</Logout>
-      </li>
-    </ul>
+    <div class="relative">
+      <ul
+        v-if="isOpen"
+        class="absolute mt-2 min-w-32 right-0 py-4 bg-white border shadow-lg rounded"
+      >
+        <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
+        <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
+        <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">Link 1</li>
+        <li class="px-5 py-1 hover:bg-teal-500 hover:text-white">
+          <Logout>Logout</Logout>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
