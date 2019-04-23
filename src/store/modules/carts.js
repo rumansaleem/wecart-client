@@ -55,12 +55,30 @@ const mutations = {
   addCartProduct(state, { cart, product }) {
     cart.products.push(product)
   },
+  removeCartProduct(state, { cart, product }) {
+    const index = cart.products.findIndex(item => product.id == item.id)
+    console.log(index)
+    if (index >= 0) {
+      cart.products.splice(index, 1)
+    }
+  },
+  clearCartItems(state, { cart }) {
+    cart.products.splice(0, cart.products.length)
+  },
 }
 
 const actions = {
   addToCart({ commit, getters }, product) {
     const cart = getters.defaultCart
     commit('addCartProduct', { cart, product })
+  },
+  removeFromCart({ commit, getters }, product) {
+    const cart = getters.defaultCart
+    commit('removeCartProduct', { cart, product })
+  },
+  clearCart({ commit, getters }) {
+    const cart = getters.defaultCart
+    commit('clearCartItems', { cart })
   },
 }
 

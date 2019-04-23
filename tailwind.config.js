@@ -5,6 +5,15 @@ module.exports = {
       center: true,
       padding: '1rem',
     },
+
+    extend: {
+      maxHeight: {
+        'half-screen': '50vh',
+      },
+      height: {
+        current: '1em',
+      },
+    },
   },
   variants: {
     // Some useful comment
