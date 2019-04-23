@@ -1,11 +1,7 @@
 <template>
   <div class="inline-flex flex-col">
-    <button
-      class="flex items-center font-bold uppercase tracking-wide"
-      @click.prevent="toggle"
-    >
-      <img :src="gravatar" :alt="user.name" class="mx-2 rounded-full w-8" />
-      <span v-text="user.name"></span>
+    <button class="px-2" @click.prevent="toggle">
+      <img :src="gravatar" :alt="user.name" class="rounded-full w-8" />
     </button>
     <div class="relative">
       <ul
