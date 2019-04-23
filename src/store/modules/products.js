@@ -2,34 +2,34 @@ const state = {
   all: [
     {
       id: 3,
-      title: 'A great Product',
+      title: 'Something great',
       description:
         'lorem ipsum dolor sit amet somethn long enough that it seems like a description',
-      thumbnail: 'http://lorempixel.com/500/500',
+      thumbnail: 'http://lorempixel.com/400/300',
       price: 300,
     },
     {
       id: 1,
-      title: 'Some Ordinary Product',
+      title: 'Something Ordinary',
       description:
         'lorem ipsum dolor sit amet somethn long enough that it seems like a description',
-      thumbnail: 'http://lorempixel.com/500/500',
+      thumbnail: 'http://lorempixel.com/400/300',
       price: 150,
     },
     {
       id: 2,
-      title: 'A Nice Product',
+      title: 'Something Nice',
       description:
         'lorem ipsum dolor sit amet somethn long enough that it seems like a description',
-      thumbnail: 'http://lorempixel.com/500/500',
+      thumbnail: 'http://lorempixel.com/400/300',
       price: 2300,
     },
     {
       id: 4,
-      title: 'Some Fancy Product',
+      title: 'Something Fancy',
       description:
         'lorem ipsum dolor sit amet somethn long enough that it seems like a description',
-      thumbnail: 'http://lorempixel.com/500/500',
+      thumbnail: 'http://lorempixel.com/400/300',
       price: 430,
     },
   ],

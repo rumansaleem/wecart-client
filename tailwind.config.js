@@ -7,6 +7,9 @@ module.exports = {
     },
 
     extend: {
+      maxWidth: {
+        '1/3': '33.33%',
+      },
       maxHeight: {
         'half-screen': '50vh',
       },
@@ -17,6 +20,8 @@ module.exports = {
   },
   variants: {
     // Some useful comment
+    minHeight: ['responsive'],
+    maxWidht: ['responsive'],
   },
   plugins: [
     // Some useful comment

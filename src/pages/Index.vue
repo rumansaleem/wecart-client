@@ -14,25 +14,41 @@
       <h3 class="font-bold text-2xl my-4">Top Products</h3>
 
       <ul class="flex flex-wrap -m-4">
-        <li v-for="product in products" :key="product.id" class="p-4 w-1/3">
-          <div class="bg-white shadow border rounded p-6">
-            <h4 class="font-bold text-xl mb-3" v-text="product.title"></h4>
+        <li
+          v-for="product in products"
+          :key="product.id"
+          class="p-4 w-full md:w-1/3 lg:w-1/4"
+        >
+          <div
+            class="bg-white shadow border rounded p-6 flex flex-row items-start md:flex-col md:items-stretch h-full"
+          >
             <img
               :src="product.thumbnail"
               :alt="product.title"
-              class="w-5/6 mx-auto my-4 block shadow-md"
+              class="max-w-1/3 mr-3 md:mx-auto md:max-w-full block shadow-md"
             />
-            <p v-text="product.description"></p>
-            <p class="flex font-bold mt-4 items-baseline">
-              <span class="text-2xl">{{ product.price }}&#x20B9;</span>
-              <del class="text-gray-600">{{ product.price * 1.4 }}&#x20B9;</del>
-              <button
-                class="ml-auto px-3 py-1 bg-teal-500 text-white font-bold text-lg rounded"
-                @click="addToCart(product)"
-              >
-                Add to Cart
-              </button>
-            </p>
+            <div class="product-details flex-1 md:flex-0">
+              <h4
+                class="font-bold text-sm md:text-xl my-3"
+                v-text="product.title"
+              ></h4>
+              <div class="w-full flex mt-4 items-baseline justify-between">
+                <p>
+                  <span class="text-lg font-bold mr-1"
+                    >{{ product.price }}&#x20B9;</span
+                  >
+                  <del class="text-sm text-gray-600 italic"
+                    >{{ product.price * 1.4 }}&#x20B9;</del
+                  >
+                </p>
+                <button
+                  class="px-2 py-1 bg-teal-500 text-white font-bold text-sm rounded"
+                  @click="addToCart(product)"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
