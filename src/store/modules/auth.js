@@ -1,5 +1,11 @@
 const state = {
-  user: JSON.parse(localStorage.getItem('authUser')),
+  user: {
+    id: 1,
+    name: 'Ruman Saleem',
+    email: 'ruman63@gmail.com',
+    isAdmin: false,
+    defaultCartId: 1,
+  },
   token: localStorage.getItem('authToken'),
 }
 
@@ -24,6 +30,9 @@ const mutations = {
     state.token = null
     localStorage.removeItem('authToken')
     localStorage.removeItem('authUser')
+  },
+  setDefaultCartId(state, cartId) {
+    state.user = { ...state.user, defaultCartId: cartId }
   },
 }
 

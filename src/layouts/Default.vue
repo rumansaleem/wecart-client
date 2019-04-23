@@ -20,8 +20,11 @@
           <g-link class="mx-2" to="/">Home</g-link>
           <g-link class="mx-2" to="/users">Users</g-link>
         </nav>
-        <div class="text-xs uppercase font-semibold tracking-wide -mx-2">
-          <UserMenu v-if="isLoggedIn"></UserMenu>
+        <div
+          class="flex items-center text-xs uppercase font-semibold tracking-wide -mx-2"
+        >
+          <UserMenu v-if="isLoggedIn" class="mx-2"></UserMenu>
+          <CartMenu v-if="isLoggedIn" class="mx-2"></CartMenu>
           <g-link v-if="!isLoggedIn" class="mx-2" to="/login">Login</g-link>
           <g-link v-if="!isLoggedIn" class="mx-2" to="/register"
             >Register</g-link
@@ -36,9 +39,10 @@
 </template>
 <script>
 import UserMenu from './../components/UserMenu.vue'
+import CartMenu from './../components/CartMenu.vue'
 import { mapGetters } from 'vuex'
 export default {
-  components: { UserMenu },
+  components: { UserMenu, CartMenu },
   computed: {
     ...mapGetters(['isLoggedIn']),
   },

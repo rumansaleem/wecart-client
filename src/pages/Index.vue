@@ -28,6 +28,7 @@
               <del class="text-gray-600">{{ product.price * 1.4 }}&#x20B9;</del>
               <button
                 class="ml-auto px-3 py-1 bg-teal-500 text-white font-bold text-lg rounded"
+                @click="addToCart(product)"
               >
                 Add to Cart
               </button>
@@ -40,7 +41,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   metaInfo: {
@@ -50,6 +51,9 @@ export default {
     ...mapState({
       products: state => state.products.all,
     }),
+  },
+  methods: {
+    ...mapActions(['addToCart']),
   },
 }
 </script>
